@@ -335,7 +335,7 @@ p {
 }
 
 /* Work */
-.work__categroies {
+.work__categories {
   margin: 40px;
 }
 
@@ -382,6 +382,13 @@ category 활성화 됐을 때 숫자와 category 위에 마우스를 올렸을 �
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  opacity: 1;
+  transition: all var(--animation-duration) ease-out;
+}
+
+.work__projects.anim-out {
+  opacity: 0;
+  transform: scale(0.96) translateY(40px);
 }
 
 .project {
@@ -393,6 +400,10 @@ category 활성화 됐을 때 숫자와 category 위에 마우스를 올렸을 �
   height: 250px;
   margin: 2px;
   background-color: var(--color-light-white);
+}
+
+.project.invisible {
+  display: none;
 }
 
 .project__img {
