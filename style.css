@@ -94,6 +94,35 @@ p {
   color: var(--color-black);
   margin: 4px 0;
 }
+/* Arrow up button */
+.arrowUp__btn {
+  width: 100px;
+  height: 100px;
+  position: fixed;
+  bottom: 3%;
+  right: 4%;
+  background-color: var(--color-dark-pink);
+  border-radius: 50%;
+  z-index: 1;
+  text-align: center;
+  opacity: 0;
+  transition: all var(--animation-duration) ease-in;
+  pointer-events: none;
+}
+
+.arrowUp__btn.active {
+  opacity: 1;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.arrowUp__btn i {
+  position: relative;
+  right: 0.5px;
+  line-height: 100px;
+  color: var(--color-white);
+  font-size: 60px;
+}
 
 /* Navbar */
 #navbar {
