@@ -169,8 +169,8 @@ p {
 
 .navbar__toggle-btn {
   position: absolute;
-  top: 24px;
-  right: 32px;
+  top: 12px;
+  right: 14px;
   font-size: 24px;
   color: var(--color-white);
   display: none;
@@ -527,12 +527,17 @@ category 활성화 됐을 때 숫자와 category 위에 마우스를 올렸을 �
   #navbar {
     flex-direction: column;
     align-items: flex-start;
+    background-color: var(--color-pink);
   }
   .navbar__menu {
     flex-direction: column;
     text-align: center;
     width: 100%;
     display: none;
+  }
+
+  .navbar__menu.active {
+    display: block;
   }
 
   .about__majors {

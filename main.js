@@ -5,7 +5,6 @@
 const navbar = document.querySelector('#navbar');
 const arrowUp = document.querySelector('.arrowUp__btn');
 const navbarHeight = navbar.getBoundingClientRect().height;
-
 document.addEventListener('scroll', () => {
     //console.log(window.scrollY);
     //console.log(`navabarHeight: ${navbarHeight}`);
@@ -20,8 +19,22 @@ document.addEventListener('scroll', () => {
     }
 });
 
+// Click navbar toggle button
+const toggleBtn = document.querySelector('.navbar__toggle-btn');
+toggleBtn.addEventListener('click', () => {
+    if(navbarMenu.classList.value === 'navbar__menu active') {
+        navbarMenu.classList.remove('active');
+        navbarMenu.firstElementChild.classList.remove('active');
+    } else {
+        navbarMenu.classList.add('active');
+        navbarMenu.firstElementChild.classList.add('active');
+        console.log(navbarMenu.classList);
+    }
+})
+
 // Handle scrolling when tapping on the navbar menu
 const navbarMenu = document.querySelector('.navbar__menu');
+const menu_items = document.querySelectorAll('.navbar__menu__item');
 navbarMenu.addEventListener('click', (event) => {
     const target = event.target;
     const link = target.dataset.link;
@@ -30,6 +43,14 @@ navbarMenu.addEventListener('click', (event) => {
     }
     //console.log(event.target.dataset.link);
     scrollIntoView(link);
+
+    // navbar 카테고리 클릭 시 active 클래스 전환
+    menu_items.forEach((item) => {
+        if(item.classList.value === 'navbar__menu__item active') {
+            item.classList.remove('active');
+        }
+    })
+    event.target.classList.add('active');
 })
 
 // Click 'Contact Me' button
@@ -59,25 +80,44 @@ arrowUp.addEventListener('click', () => {
 const workBtnContainer = document.querySelector('.work__categories');
 const projectContainer = document.querySelector('.work__projects');
 const projects = document.querySelectorAll('.project');
+const categories = document.querySelectorAll('.category__btn');
 workBtnContainer.addEventListener('click', (e) => {
-    const filter = e.target.dataset.filter || e.target.parentNode.dataset.filter;
-    if(filter == null) {
+    // 카테고리 클릭 시 active 클래스 전환
+    console.log(e.target.classList.value);
+    if(e.target.classList.value === 'category__btn active') {
         return;
+    } else {
+        categories.forEach((category) => {
+            if(category.classList.value === 'category__btn active') {
+                category.classList.remove('active');
+            } 
+        })
+        if(e.target.classList.value === 'category__count') {
+            e.target.parentNode.classList.add('active');
+        } else {
+            e.target.classList.add('active');
+        }
+        
+        const filter = e.target.dataset.filter || e.target.parentNode.dataset.filter;
+        if(filter == null) {
+            return;
+        }
+        projectContainer.classList.add('anim-out');
+        setTimeout(() => {
+            projects.forEach((project) => {
+                //console.log(project.dataset.type);
+                if(filter === '*' || filter === project.dataset.type) {
+                    project.classList.remove('invisible');
+                } else {
+                    project.classList.add('invisible');
+                }
+            });
+            projectContainer.classList.remove('anim-out');
+        }, 300)
     }
-    projectContainer.classList.add('anim-out');
-    console.log(filter);
-    setTimeout(() => {
-        projects.forEach((project) => {
-            //console.log(project.dataset.type);
-            if(filter === '*' || filter === project.dataset.type) {
-                project.classList.remove('invisible');
-            } else {
-                project.classList.add('invisible');
-            }
-        });
-        projectContainer.classList.remove('anim-out');
-    }, 300)
 })
+
+
 
 
 
