@@ -4,6 +4,7 @@
 //  Make navbar transparent when it is on the top
 const navbar = document.querySelector('#navbar');
 const arrowUp = document.querySelector('.arrowUp__btn');
+const toggleBtnResize = document.querySelector('.navbar__toggle-btn');
 const navbarHeight = navbar.getBoundingClientRect().height;
 document.addEventListener('scroll', () => {
     //console.log(window.scrollY);
@@ -12,24 +13,20 @@ document.addEventListener('scroll', () => {
         navbar.classList.add('navbar--dark');
         // Arrow up button active
         arrowUp.classList.add('active');
+        toggleBtnResize.classList.add('resize');
     } else {
         navbar.classList.remove('navbar--dark');
         // Arrow up button inactive
         arrowUp.classList.remove('active');
+        toggleBtnResize.classList.remove('resize');
     }
 });
 
 // Click navbar toggle button
 const toggleBtn = document.querySelector('.navbar__toggle-btn');
 toggleBtn.addEventListener('click', () => {
-    if(navbarMenu.classList.value === 'navbar__menu active') {
-        navbarMenu.classList.remove('active');
-        navbarMenu.firstElementChild.classList.remove('active');
-    } else {
-        navbarMenu.classList.add('active');
-        navbarMenu.firstElementChild.classList.add('active');
-        console.log(navbarMenu.classList);
-    }
+    navbarMenu.classList.toggle('active');
+    navbarMenu.firstElementChild.classList.toggle('active');
 })
 
 // Handle scrolling when tapping on the navbar menu
