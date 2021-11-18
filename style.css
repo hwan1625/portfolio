@@ -573,7 +573,7 @@ category 활성화 됐을 때 숫자와 category 위에 마우스를 올렸을 �
 }
 
 /* Galaxy, Iphone responsive */
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 500px) {
   /* common */
   h1 {
     font-size: var(--font-medium);
